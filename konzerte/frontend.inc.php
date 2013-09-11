@@ -31,8 +31,8 @@ function konzerte_ausgeben($konzerte) {
 print "<div id='modul'>";
 print "<div id='modul_konzerte'>";
 
-$konzerte_alt = mysql_query("SELECT * FROM modul_konzerte WHERE datum < CURDATE() ORDER by datum DESC");
-$konzerte_neu = mysql_query("SELECT * FROM modul_konzerte WHERE datum > CURDATE() ORDER by datum ASC");
+$konzerte_alt = mysql_query("SELECT * FROM modul_konzerte WHERE date(datum) < date(CURDATE()) ORDER by datum DESC");
+$konzerte_neu = mysql_query("SELECT * FROM modul_konzerte WHERE date(datum) >= date(CURDATE()) ORDER by datum ASC");
 
 if (mysql_num_rows($konzerte_alt) == 0 && mysql_num_rows($konzerte_neu)) {
 	print "Noch keine Konzerte eingetragen.";
